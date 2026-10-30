@@ -1,164 +1,234 @@
-:root {
-  --font-mono: 'Roboto Mono', monospace;
-}
+@import 'tailwindcss';
 
-* {
-  box-sizing: border-box;
-}
+@theme {
+  /* closed palette: Tailwind default tokens are disabled */
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --shadow-*: initial;
+  --animate-*: initial;
 
-html {
-  font-size: 18px;
-  line-height: 32px;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
 
-  background: rgb(0, 0, 0);
-  -webkit-font-smoothing: antialiased;
-}
+  /* surfaces */
+  --color-page: #0a0a3c;
+  --color-surface-tint: #eef0ff;
+  --color-surface-photo: #e8e8ff;
+  --color-surface-code: #ffffe1;
 
-html,
-body,
-#app {
-  height: 100%;
-}
+  /* text */
+  --color-heading: #2a1470;
+  --color-ink-soft: #333333;
+  --color-muted: #666688;
+  --color-ink-faint: #b0b0c8;
+  --color-haze: #aaaaff;
+  --color-link: #0000ee;
+  --color-visited: #551a8b;
 
-body {
-  font-family: system-ui;
-  font-size: 18px;
-  line-height: 32px;
+  /* accents */
+  --color-accent: #cc0066;
+  --color-alert: #ff0000;
+  --color-highlight: #ffff00;
+  --color-terminal: #00ff00;
+  --color-star: #ff9900;
 
-  margin: 0;
-  color: rgb(1000, 1000, 1000);
+  /* interface elements */
+  --color-chrome: #c0c0c0;
+  --color-chrome-light: #dfdfdf;
+  --color-chrome-shadow: #808080;
+  --color-divider: #9999cc;
+  --color-table-head: #ffcc00;
+  --color-bar-from: #7b68ee;
+  --color-bar-to: #2a1470;
+  --color-nav-from: #4a4ae0;
+  --color-nav-to: #1c1c80;
+  --color-nav-hover-from: #ff66cc;
+  --color-nav-hover-to: #990066;
+  --color-nav-edge: #9999ff;
+  --color-cal-head: #ddddff;
+  --color-cal-line: #ccccee;
 
-  @media (max-width: 1024px) {
-    font-size: 15px;
-    line-height: 24px;
-  }
-}
+  /* GitHub activity levels */
+  --color-gh-0: #ffffff;
+  --color-gh-1: #c6e48b;
+  --color-gh-2: #7bc96f;
+  --color-gh-3: #239a3b;
+  --color-gh-4: #196127;
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+  --font-body: Verdana, Tahoma, Geneva, sans-serif;
+  --font-ui: Tahoma, Verdana, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --font-pixel: var(--font-vt323), 'Courier New', monospace;
+  --font-word: 'Arial Black', Impact, Haettenschweiler, sans-serif;
+  --font-serif: 'Times New Roman', Times, serif;
 
-h1 {
-  margin: 40px 0;
-  font-size: 64px;
-  line-height: 70px;
-  font-weight: bold;
+  --text-2xs: 11px;
+  --text-2xs--line-height: normal;
+  --text-xs: 12px;
+  --text-xs--line-height: normal;
+  --text-sm: 13px;
+  --text-sm--line-height: normal;
+  --text-lg: 20px;
+  --text-lg--line-height: 1.2;
+  --text-led: 26px;
+  --text-led--line-height: 1;
 
-  @media (max-width: 1024px) {
-    margin: 24px 0;
-    font-size: 42px;
-    line-height: 42px;
-  }
+  /* no line-height of its own: inherited from the context */
+  --text-compact: 12px;
 
-  @media (max-width: 768px) {
-    font-size: 38px;
-    line-height: 38px;
-  }
+  --text-shadow-hard: 1px 1px 0 #000;
+  --text-shadow-etched: 1px 1px 0 #fff;
 
-  @media (max-width: 400px) {
-    font-size: 32px;
-    line-height: 32px;
-  }
-}
+  --breakpoint-sm: 35rem;
+  --breakpoint-md: 56.25rem;
 
-p {
-  margin: 24px 0;
+  --shadow-box: 3px 3px 0 rgb(0 0 0 / 0.45);
 
-  @media (max-width: 1024px) {
-    margin: calc(var(--base) * 0.75) 0;
-  }
-}
+  --animate-blink: blink 1s steps(1) infinite;
+  --animate-blink-slow: blink 1.4s steps(1) infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-spin-y: spin-y 1.8s steps(16) infinite;
 
-a {
-  color: currentColor;
-
-  &:focus {
-    opacity: 0.8;
-    outline: none;
-  }
-
-  &:active {
-    opacity: 0.7;
-    outline: none;
-  }
-}
-
-svg {
-  vertical-align: middle;
-}
-
-.home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-  padding: 45px;
-  max-width: 1024px;
-  margin: 0 auto;
-  overflow: hidden;
-
-  @media (max-width: 400px) {
-    padding: 24px;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-
-    h1 {
-      text-align: center;
+  @keyframes blink {
+    50% {
+      visibility: hidden;
     }
   }
 
-  .links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    a {
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-    }
-
-    .admin {
-      color: rgb(0, 0, 0);
-      background: rgb(1000, 1000, 1000);
-      border: 1px solid rgb(0, 0, 0);
-    }
-
-    .docs {
-      color: rgb(1000, 1000, 1000);
-      background: rgb(0, 0, 0);
-      border: 1px solid rgb(1000, 1000, 1000);
+  @keyframes marquee {
+    to {
+      transform: translateX(-100%);
     }
   }
 
-  .footer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    .codeLink {
-      text-decoration: none;
-      padding: 0 0.5rem;
-      background: rgb(60, 60, 60);
-      border-radius: 4px;
+  @keyframes spin-y {
+    to {
+      transform: rotateY(360deg);
     }
   }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-page);
+    background-image:
+      radial-gradient(1px 1px at 12px 18px, #fff 99%, transparent),
+      radial-gradient(1px 1px at 70px 90px, #fff 99%, transparent),
+      radial-gradient(1.5px 1.5px at 130px 40px, #ffffaa 99%, transparent),
+      radial-gradient(1px 1px at 160px 140px, #aaf 99%, transparent),
+      radial-gradient(1px 1px at 40px 150px, #fff 99%, transparent),
+      radial-gradient(1.5px 1.5px at 100px 120px, #fff 99%, transparent);
+    background-size: 180px 180px;
+    color: var(--color-black);
+    font: 13px/1.5 var(--font-body);
+    padding-block: 12px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: var(--color-visited);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 1px dotted var(--color-black);
+    outline-offset: 2px;
+  }
+}
+
+/* 3D border styles Tailwind has no utilities for */
+@utility border-outset {
+  --tw-border-style: outset;
+  border-style: outset;
+}
+
+@utility border-inset {
+  --tw-border-style: inset;
+  border-style: inset;
+}
+
+@utility border-groove {
+  --tw-border-style: groove;
+  border-style: groove;
+}
+
+@utility border-ridge {
+  --tw-border-style: ridge;
+  border-style: ridge;
+}
+
+/* Windows 98 style bevels */
+@utility bevel-raised {
+  border: 2px solid;
+  border-color: var(--color-white) var(--color-black) var(--color-black) var(--color-white);
+  box-shadow: inset -1px -1px 0 var(--color-chrome-shadow);
+}
+
+@utility bevel-pressed {
+  border-color: var(--color-black) var(--color-white) var(--color-white) var(--color-black);
+  box-shadow: inset 1px 1px 0 var(--color-chrome-shadow);
+}
+
+@utility bevel-sunken {
+  border: 2px solid;
+  border-color: var(--color-chrome-shadow) var(--color-chrome-light) var(--color-chrome-light)
+    var(--color-chrome-shadow);
+}
+
+@utility bevel-thin {
+  border: 1px solid;
+  border-color: var(--color-nav-edge) var(--color-black) var(--color-black) var(--color-nav-edge);
+}
+
+/* Photoshop-style effects from the 2003 template */
+@utility bg-banner {
+  background:
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.07) 0 1px, transparent 1px 3px),
+    linear-gradient(90deg, var(--color-bar-to), var(--color-bar-from) 55%, var(--color-bar-to));
+}
+
+@utility bg-rainbow {
+  background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, violet);
+}
+
+@utility wordart {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e4e8ff 44%,
+    #4a4aa8 50%,
+    #c8d0ff 58%,
+    #ffffff 100%
+  );
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(2px 2px 0 #000) drop-shadow(0 0 4px rgb(10 10 60 / 0.9));
+}
+
+@utility wordart-subtitle {
+  background: linear-gradient(180deg, #ffffff 0%, #e4e8ff 46%, #a8b4ff 54%, #ffffff 100%);
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(1px 1px 0 #000) drop-shadow(0 0 4px rgb(10 10 60 / 0.9));
+}
+
+@utility wordart-chrome {
+  background: linear-gradient(180deg, #ffffff 0%, #a8b4ff 40%, #303080 52%, #c8d0ff 100%);
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(1px 1px 0 #000) drop-shadow(2px 2px 0 #303060) drop-shadow(3px 3px 0 #101030);
 }
