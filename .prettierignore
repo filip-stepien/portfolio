@@ -1,0 +1,9 @@
+node_modules
+.next
+src/app/(payload)
+src/migrations
+src/payload-types.ts
+AGENTS.md
+CLAUDE.md
+*.yaml
+*.yml
